@@ -33,13 +33,13 @@ conn = sqlite3.connect('chinook.db')
 Let's create a function called ```sql_df``` that returns a dataframe of a SQL query.
 
 <u>In the cell below:</u>
-1. Define a function called ```sql_df``` that takes in two parameters ```query```, and ```connection```.
+1. Define a function called ```sql_df``` that takes in a parameter ```query```.
 2. Return a dataframe from the function using [pd.read_sql](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html)
 
 
 ```python
-def sql_df(query, connection):
-    return pd.read_sql(query, connection)
+def sql_df(query):
+    return pd.read_sql(query, conn)
 ```
 
 <img src=schema.png width=700/>
@@ -58,7 +58,7 @@ We'll start with something simple for our first SQL query.
 
 ```python
 QUERY = """SELECT * FROM tracks LIMIT 2;"""
-first_query = sql_df(QUERY, conn)
+first_query = sql_df(QUERY)
 
 #used for tests 
 # pkl_dump([
@@ -103,7 +103,7 @@ QUERY = """SELECT tracks.Name as Song,
             WHERE Artist = 'U2'
             LIMIT 15"""
 
-df = sql_df(QUERY, conn)
+df = sql_df(QUERY)
 df.head()
 
 #used for tests
@@ -142,31 +142,31 @@ df.head()
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>Zoo Station</td>
       <td>Achtung Baby</td>
       <td>U2</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Even Better Than The Real Thing</td>
       <td>Achtung Baby</td>
       <td>U2</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>One</td>
       <td>Achtung Baby</td>
       <td>U2</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Until The End Of The World</td>
       <td>Achtung Baby</td>
       <td>U2</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>Who's Gonna Ride Your Wild Horses</td>
       <td>Achtung Baby</td>
       <td>U2</td>
@@ -232,6 +232,18 @@ req_string = 'https://itunes.apple.com/search?term={}&entity=song&limit=200'.for
 ```
 
 Run the cell below to see if your ```req_string``` variable is correct!
+
+
+```python
+run_test(req_string, 'req_string')
+```
+
+
+
+
+    'Hey, you did it.  Good job.'
+
+
 
 Now that we have our req_string, we can send our request to the API using the ```requests``` library.
 
@@ -324,7 +336,7 @@ df['release_date']
     1                     None
     2     1988-11-18T12:00:00Z
     3                     None
-    4     1988-11-18T12:00:00Z
+    4                     None
     5     1988-11-18T12:00:00Z
     6     1991-10-21T12:00:00Z
     7     1988-11-18T12:00:00Z
@@ -376,105 +388,105 @@ df
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>Zoo Station</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Even Better Than The Real Thing</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>One</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Until The End Of The World</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>Who's Gonna Ride Your Wild Horses</td>
       <td>Achtung Baby</td>
       <td>U2</td>
-      <td>1988-11-18T12:00:00Z</td>
+      <td>None</td>
     </tr>
     <tr>
-      <td>5</td>
+      <th>5</th>
       <td>So Cruel</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>6</td>
+      <th>6</th>
       <td>The Fly</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1991-10-21T12:00:00Z</td>
     </tr>
     <tr>
-      <td>7</td>
+      <th>7</th>
       <td>Mysterious Ways</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>8</td>
+      <th>8</th>
       <td>Tryin' To Throw Your Arms Around The World</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>9</td>
+      <th>9</th>
       <td>Ultraviolet (Light My Way)</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>10</td>
+      <th>10</th>
       <td>Acrobat</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>11</td>
+      <th>11</th>
       <td>Love Is Blindness</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>12</td>
+      <th>12</th>
       <td>Beautiful Day</td>
       <td>All That You Can't Leave Behind</td>
       <td>U2</td>
       <td>2000-10-01T12:00:00Z</td>
     </tr>
     <tr>
-      <td>13</td>
+      <th>13</th>
       <td>Stuck In A Moment You Can't Get Out Of</td>
       <td>All That You Can't Leave Behind</td>
       <td>U2</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>14</td>
+      <th>14</th>
       <td>Elevation</td>
       <td>All That You Can't Leave Behind</td>
       <td>U2</td>
@@ -485,8 +497,6 @@ df
 </div>
 
 
-
-Run the cell below to check if you collected the correct release dates!
 
 It looks like there are several ```None```'s in our ```release_date``` column. *And there is a reason for this.*
 
@@ -562,10 +572,10 @@ df['release_date']
 
 
     0     1988-11-18T12:00:00Z
-    1     1988-11-18T12:00:00Z
+    1                     None
     2     1988-11-18T12:00:00Z
     3     1988-11-18T12:00:00Z
-    4     1988-11-18T12:00:00Z
+    4                     None
     5     1988-11-18T12:00:00Z
     6     1991-10-21T12:00:00Z
     7     1988-11-18T12:00:00Z
@@ -574,7 +584,7 @@ df['release_date']
     10    1988-11-18T12:00:00Z
     11    1988-11-18T12:00:00Z
     12    2000-10-01T12:00:00Z
-    13    2000-10-30T12:00:00Z
+    13                    None
     14                    None
     Name: release_date, dtype: object
 
@@ -615,105 +625,105 @@ df
   </thead>
   <tbody>
     <tr>
-      <td>0</td>
+      <th>0</th>
       <td>Zoo Station</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>1</td>
+      <th>1</th>
       <td>Even Better Than The Real Thing</td>
       <td>Achtung Baby</td>
       <td>U2</td>
-      <td>1988-11-18T12:00:00Z</td>
+      <td>None</td>
     </tr>
     <tr>
-      <td>2</td>
+      <th>2</th>
       <td>One</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>3</td>
+      <th>3</th>
       <td>Until The End Of The World</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>4</td>
+      <th>4</th>
       <td>Who's Gonna Ride Your Wild Horses</td>
       <td>Achtung Baby</td>
       <td>U2</td>
-      <td>1988-11-18T12:00:00Z</td>
+      <td>None</td>
     </tr>
     <tr>
-      <td>5</td>
+      <th>5</th>
       <td>So Cruel</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>6</td>
+      <th>6</th>
       <td>The Fly</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1991-10-21T12:00:00Z</td>
     </tr>
     <tr>
-      <td>7</td>
+      <th>7</th>
       <td>Mysterious Ways</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>8</td>
+      <th>8</th>
       <td>Tryin' To Throw Your Arms Around The World</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>9</td>
+      <th>9</th>
       <td>Ultraviolet (Light My Way)</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>None</td>
     </tr>
     <tr>
-      <td>10</td>
+      <th>10</th>
       <td>Acrobat</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>11</td>
+      <th>11</th>
       <td>Love Is Blindness</td>
       <td>Achtung Baby</td>
       <td>U2</td>
       <td>1988-11-18T12:00:00Z</td>
     </tr>
     <tr>
-      <td>12</td>
+      <th>12</th>
       <td>Beautiful Day</td>
       <td>All That You Can't Leave Behind</td>
       <td>U2</td>
       <td>2000-10-01T12:00:00Z</td>
     </tr>
     <tr>
-      <td>13</td>
+      <th>13</th>
       <td>Stuck In A Moment You Can't Get Out Of</td>
       <td>All That You Can't Leave Behind</td>
       <td>U2</td>
-      <td>2000-10-30T12:00:00Z</td>
+      <td>None</td>
     </tr>
     <tr>
-      <td>14</td>
+      <th>14</th>
       <td>Elevation</td>
       <td>All That You Can't Leave Behind</td>
       <td>U2</td>
@@ -725,4 +735,4 @@ df
 
 
 
-Run the cell below to see if you were successful!
+We got two more matches this time around. When using an API to add more information to our data, finding the proper matches for each row in a dataset is the name of the game!
