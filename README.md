@@ -34,7 +34,7 @@ conn = None
 Let's create a function called ```sql_df``` that returns a dataframe of a SQL query.
 
 <u>In the cell below:</u>
-1. Define a function called ```sql_df``` that takes in two parameters ```query```, and ```connection```.
+1. Define a function called ```sql_df``` that takes in a parameter ```query```.
 2. Return a dataframe from the function using [pd.read_sql](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql.html)
 
 
@@ -68,6 +68,13 @@ Run the cell below to see if your query returned the correct data!
 ```python
 run_test(first_query, 'first_query')
 ```
+
+
+
+
+    'Hey, you did it.  Good job.'
+
+
 
 **Ok ok**
 
@@ -104,6 +111,13 @@ Run the cell below to see if you returned the correct results!
 ```python
 run_test(df, 'query_to_df')
 ```
+
+
+
+
+    'Hey, you did it.  Good job.'
+
+
 
 <center><u>Our df variable is made up of a table with three columns</u></center>
 
@@ -157,6 +171,13 @@ Run the cell below to see if your ```req_string``` variable is correct!
 run_test(req_string, 'req_string')
 ```
 
+
+
+
+    'Hey, you did it.  Good job.'
+
+
+
 Now that we have our req_string, we can send our request to the API using the ```requests``` library.
 
 
@@ -209,13 +230,6 @@ Let's take a look at the results
 df
 ```
 
-Run the cell below to check if you collected the correct release dates!
-
-
-```python
-run_test(df, 'release_date')
-```
-
 It looks like there are several ```None```'s in our ```release_date``` column. *And there is a reason for this.*
 
 The word ```the``` is capitalized in our Chinook database but is lowercased by the iTunes API.
@@ -249,9 +263,9 @@ Copy and paste your code from above in the cell below, except this time lower al
 df
 ```
 
-Run the cell below to see if you were successful!
+We got two more matches this time around. When using an API to add more information to our data, finding the proper matches for each row in a dataset is the name of the game!
 
 
 ```python
-run_test(df, 'string_manip')
+
 ```
