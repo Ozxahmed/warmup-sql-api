@@ -323,6 +323,19 @@ run_test(req_string, 'req_string')
 
 
 
+
+```python
+# __SOLUTION__
+run_test(req_string, 'req_string')
+```
+
+
+
+
+    'Hey, you did it.  Good job.'
+
+
+
 Now that we have our req_string, we can send our request to the API using the ```requests``` library.
 
 
@@ -864,3 +877,10 @@ df
 </div>
 
 
+
+We got two more matches this time around. When using an API to add more information to our data, finding the proper matches for each row in a dataset is the name of the game!
+
+
+```python
+
+```
